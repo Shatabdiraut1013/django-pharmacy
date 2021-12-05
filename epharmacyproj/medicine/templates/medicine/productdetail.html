@@ -1,0 +1,62 @@
+{% extends 'medicine/base.html' %}
+{% load static %}
+{% block title %} Products Detail {% endblock title %}
+
+{% block main_content %}
+
+<!-- hero section -->
+<section class="main-heading my-5">
+    <div class="text-center">
+        <h1 style="cursor: pointer;">{{product.med_name}}</h1>
+        <hr class="w-25 border-danger mx-auto">
+    </div>
+
+    <div class="container">
+        <div class="row my-5">
+            <div class="col-lg-6 col-md-6 col-12">
+                <figure>
+                <img src="{{product.product_image.url}}" alt="about images" class="img-fluid about_img w-50">
+                </figure>
+            </div>
+            <div
+                class="col-lg-6 col-md-6 col-12 d-flex justify-content-center align-items-start flex-column"> 
+                <p> <span style="font-weight: bold;">Indications -</span> {{product.indications}}</p>
+                <p> <span style="font-weight: bold;">Dosage -</span>{{product.dosage}}</p>
+                <p> <span style="font-weight: bold;">Side Effects -</span> 
+                {{product.side_effects}}
+                </p>
+                <p> <span style="font-weight: bold;">Rs. </span> 
+                {{product.selling_price}}
+                </p>
+            {% if request.user.is_authenticated %}
+
+    {% if item_already_in_cart %}
+    <a href="{% url 'show_cart' %}" class="btn btn-danger shadow px-5 py-2">Go to Cart</a>
+    
+    {% else %}
+
+    <form action="/add-to-cart/" class="d-inline">
+    <input type="hidden" name="prod_id" value="{{product.id}}" id="prod_id">
+    <button type="submit" class="btn btn-warning shadow px-5">Add to Cart</button>
+    </form>
+{% endif %}
+
+{% endif %}
+
+{% comment %} for anynonymus user who wants to show the add to cart button n buy now button {% endcomment %}
+{% if not request.user.is_authenticated %}
+    <form action="/add-to-cart/" class="d-inline">
+    <input type="hidden" name="prod_id" value="{{product.id}}" id="prod_id">
+    <button type="submit" class="btn btn-primary shadow px-5">Add to Cart</button>
+    </form>
+{% endif %}
+    </div>
+    </div>
+</div> 
+
+<div class="container">
+<hr class="border-danger w-100 mt-4">
+</div>
+</section>
+
+{% endblock main_content %}

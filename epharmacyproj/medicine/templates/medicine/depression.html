@@ -1,0 +1,44 @@
+{% extends 'medicine/base.html' %}
+{% load static %}
+{% block title %} Depression {% endblock title %}
+
+{% block main_content %}
+<!-- hero section -->
+
+    <section class="main-heading my-5">
+        <div class="text-center">
+            <h2 class="display-4">Depression</h2>
+            <hr class="w-25 mx-auto">
+        </div>
+
+        <div class="container">
+        {% for Depression in dep %}
+            <div class="row my-5">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <figure>
+                        <img src="{{Depression.product_image.url}}" alt="about images" class="img-fluid about_img w-50">
+                    </figure>
+                </div>
+                <div
+                    class="col-lg-6 col-md-6 col-12 d-flex justify-content-center align-items-start flex-column">
+                    <a href="{% url 'product-detail' Depression.id %}" style="text-decoration: none; color: #000000;"> 
+                        <h1 style="cursor: pointer;">{{Depression.med_name}}</h1>
+                    </a>
+                     <p class="py-2"> <span style="font-weight: bold;">Rs. </span> 
+                {{Depression.selling_price}}
+                </p>
+                    <div class="btn-group mt-4">
+                    <form action="/add-to-cart/" class="d-inline">
+    <input type="hidden" name="prod_id" value="{{Depression.id}}" id="prod_id">
+    <a href="{% url 'product-detail' Depression.id %}" class="btn btn-success shadow px-4 m-2">Quick View</a>
+    </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+    </div>
+    <div class="container">
+<hr class="w-100 mt-2">
+</div>
+</section>
+{% endblock main_content%}

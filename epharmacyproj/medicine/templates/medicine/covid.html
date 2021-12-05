@@ -1,0 +1,44 @@
+{% extends 'medicine/base.html' %}
+{% load static %}
+{% block title %}Covid Essentials{% endblock title %}
+
+{% block main_content %}
+<!-- hero section -->
+
+<section class="main-heading my-5">
+    <div class="text-center">
+        <h2 class="display-4">Covid Essentials</h2>
+        <hr class="w-25 mx-auto">
+    </div>
+
+    <div class="container">
+    {% for cov in covid %}
+        <div class="row my-5">
+            <div class="col-lg-6 col-md-6 col-12">
+                <figure>
+                    <img src="{{cov.product_image.url}}" alt="about images" class="img-fluid about_img w-50">
+                </figure>
+            </div>
+            <div
+                class="col-lg-6 col-md-6 col-12 d-flex justify-content-center align-items-start flex-column">
+                <a href="{% url 'covid-detail' cov.id %}" style="text-decoration: none; color: #000000;">
+                    <h3 style="cursor: pointer;">{{cov.med_name}}</h3>
+                </a>
+                <p class="py-2"> <span style="font-weight: bold;">Rs. </span> 
+                {{cov.selling_price}}
+                </p>
+                <div class="btn-group mt-4">
+                    <form action="/add-to-cart/" class="d-inline">
+    <input type="hidden" name="prod_id" value="{{cov.id}}" id="prod_id">
+    {% comment %} <button type="submit" class="btn btn-warning shadow px-4">Add to Cart</button> {% endcomment %}
+    <a href="{% url 'covid-detail' cov.id %}" class="btn btn-success shadow px-4 m-2">Quick View</a>
+    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+</div>
+
+</section>
+
+{% endblock main_content%}
