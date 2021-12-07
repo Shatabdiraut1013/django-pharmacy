@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Blogpost(models.Model):
     post_id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=500)
     author = models.CharField(max_length=50, default="")
     chead = models.CharField(max_length=5000, default="")
     pub_date = models.DateField()
@@ -14,7 +14,7 @@ class Blogpost(models.Model):
 
 class Popularpost(models.Model):
     post_id = models.AutoField(primary_key=True)
-    poptitle = models.CharField(max_length=50)
+    poptitle = models.CharField(max_length=500)
     popauthor = models.CharField(max_length=50)
     pophead = models.CharField(max_length=5000, default="")
     pub_date = models.DateField()

@@ -110,7 +110,7 @@
                         </div>
                         <div class="post-title">
                             <h3 href="#">{{item.title}}</h3>
-                            <p>{{item.chead}}
+                            <p>{{item.chead|slice:"0:200"}}...
                             </p>
                             <a href="blogpost/{{item.post_id}}"><button class="btn post-btn">Read More &nbsp; <i class="fas fa-arrow-right"></i></button></a>
                         </div>
@@ -159,7 +159,7 @@
                                 </div>
                             </div>
                             <div class="post-title">
-                                <a href="popularost/{{popitem.post_id}}">{{popitem.poptitle}}</a>
+                                <a href="popularpost/{{popitem.post_id}}">{{popitem.poptitle}}</a>
                             </div>
                         </div>
                         {% endfor %}
@@ -231,13 +231,8 @@
         </div>
         <div class="rights flex-row">
             <h4 class="text-gray">
-                Copyright ©2019 All rights reserved | made by
-                <a href="www.youtube.com/c/dailytuition" target="_black">E-Pharmacy <i class="fab fa-youtube"></i>
-                    Channel</a>
+                Copyright ©2021 All rights reserved | made by <span class="text-white">E-Pharmacy</span>
             </h4>
-        </div>
-        <div class="move-up">
-            <span><i class="fas fa-arrow-circle-up fa-2x"></i></span>
         </div>
     </footer>
 
